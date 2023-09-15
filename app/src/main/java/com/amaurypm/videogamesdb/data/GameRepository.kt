@@ -2,6 +2,7 @@ package com.amaurypm.videogamesdb.data
 
 import com.amaurypm.videogamesdb.data.db.GameDao
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
+import com.amaurypm.videogamesdb.util.DevsList
 
 /**
  * Creado por Amaury Perea Matsumura el 26/08/23

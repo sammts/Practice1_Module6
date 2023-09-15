@@ -7,20 +7,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.amaurypm.videogamesdb.R
 import com.amaurypm.videogamesdb.application.VideogamesDBApp
 import com.amaurypm.videogamesdb.data.GameRepository
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
-import com.amaurypm.videogamesdb.databinding.ActivityMainBinding
 import com.amaurypm.videogamesdb.databinding.GameDialogBinding
 import com.amaurypm.videogamesdb.util.DevsList
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
 
 /**
@@ -32,8 +27,8 @@ class GameDialog(
     private var game: GameEntity = GameEntity(
         title = "",
         genre = "",
-        developer = "",
-        devImage = DevsList.OTHER
+        developer = ""
+        //devImage = DevsList.OTHER
     ),
     private val updateUI: () -> Unit,
     private val message: (String) -> Unit

@@ -22,8 +22,8 @@ data class GameEntity(
     @ColumnInfo(name = "game_genre")
     var genre: String,
 
-    @ColumnInfo(name = "dev_image")
-    var devImage: DevsList,
+    //@ColumnInfo(name = "dev_image")
+    //var devImage: DevsList,
 
     @ColumnInfo(name = "game_developer")
     var developer: String
