@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.amaurypm.videogamesdb.util.Constants
+import com.amaurypm.videogamesdb.util.DevsList
 
 /**
  * Creado por Amaury Perea Matsumura el 26/08/23
@@ -20,6 +21,9 @@ data class GameEntity(
 
     @ColumnInfo(name = "game_genre")
     var genre: String,
+
+    @ColumnInfo(name = "dev_image")
+    var devImage: DevsList,
 
     @ColumnInfo(name = "game_developer")
     var developer: String

@@ -13,6 +13,9 @@
     <string name="tittle_delete">Confirmación</string>
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="update">Actualizar</string>
+    <string name="delete">Eliminar</string>
     <string name="successfully_delete">Juego eliminado exitosamente</string>
     <string name="error_delete">Error al eliminar el juego</string>
     <string name="tittle_new_game">Nuevo Juego</string>

@@ -32,7 +32,8 @@ class GameDialog(
     private var game: GameEntity = GameEntity(
         title = "",
         genre = "",
-        developer = ""
+        developer = "",
+        devImage = DevsList.OTHER
     ),
     private val updateUI: () -> Unit,
     private val message: (String) -> Unit
@@ -67,7 +68,7 @@ class GameDialog(
         }
 
         dialog = if (newGame) {
-            buildDialog("Guardar", "Cancelar", {
+            buildDialog(getString(R.string.save), getString(R.string.cancel), {
                  //Create (Guardar)
                 game.title = binding.tietTitle.text.toString()
                 game.genre = binding.tietGenre.text.toString()
@@ -91,7 +92,7 @@ class GameDialog(
                 //Cancelar
             })
         } else {
-            buildDialog("Actualizar", "Borrar", {
+            buildDialog(getString(R.string.update), getString(R.string.delete), {
                 //Update
                 game.title = binding.tietTitle.text.toString()
                 game.genre = binding.tietGenre.text.toString()
