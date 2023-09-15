@@ -4,6 +4,8 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+    //val spinner = findViewById<Spinner>(R.id.tilDeveloper)
+
+    //val lista = resources.getStringArray(R.array.options)
+
+    //val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
 
     private lateinit var binding: ActivityMainBinding
 

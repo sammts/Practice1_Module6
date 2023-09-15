@@ -1,4 +1,39 @@
 <resources>
     <string name="app_name">Videogames DB</string>
     <string name="juego_guardado">Juego guardado exitosamente</string>
+    <string name="developer">Desarrollador</string>
+    <string name="genero">Género</string>
+    <string name="nombre">Nombre</string>
+    <string name="add">Agregrar elemento</string>
+    <string name="registers_null">¡No hay registros!</string>
+    <string name="error_save">Error al guardar el juego</string>
+    <string name="successfully_updated">Juego actualizado exitosamente</string>
+    <string name="error_updated">Error al actualizar el juego</string>
+    <string name="confirm_delete">¿Realmente deseas eliminar el juego ${game.title}?</string>
+    <string name="tittle_delete">Confirmación</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="successfully_delete">Juego eliminado exitosamente</string>
+    <string name="error_delete">Error al eliminar el juego</string>
+    <string name="tittle_new_game">Nuevo Juego</string>
+    <string name="helper_name">Ingresa el nombre del videojuego</string>
+    <string name="helper_genre">Ingresa el género del videojuego</string>
+    <string-array name="options">
+        <item>Activision</item>
+        <item>Microsoft</item>
+        <item>Nintendo</item>
+        <item>Sony Interactive Entertainment</item>
+        <item>Tencent</item>
+    </string-array>
+    <string name="activision">Activision</string>
+    <string name="microsoft">Microsoft</string>
+    <string name="nintendo">Nintendo</string>
+    <string name="sony">Sony</string>
+    <string name="tencent">Tencent</string>
+    <string name="empty_name">Campo Nombre vacío</string>
+    <string name="empty_genre">Campo genero vacío</string>
+    <string name="empty_dev">Campo desarrollador vacío</string>
+    <string name="options">Selecciona una opción</string>
+
+
 </resources>

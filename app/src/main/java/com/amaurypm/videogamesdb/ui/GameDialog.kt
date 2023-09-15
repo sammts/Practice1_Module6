@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +15,9 @@ import com.amaurypm.videogamesdb.R
 import com.amaurypm.videogamesdb.application.VideogamesDBApp
 import com.amaurypm.videogamesdb.data.GameRepository
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
+import com.amaurypm.videogamesdb.databinding.ActivityMainBinding
 import com.amaurypm.videogamesdb.databinding.GameDialogBinding
+import com.amaurypm.videogamesdb.util.DevsList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,6 +27,7 @@ import java.io.IOException
  * Creado por Amaury Perea Matsumura el 01/09/23
  */
 class GameDialog(
+
     private val newGame: Boolean = true,
     private var game: GameEntity = GameEntity(
         title = "",
@@ -81,7 +85,7 @@ class GameDialog(
 
                 }catch(e: IOException){
                     e.printStackTrace()
-                    message("Error al guardar el juego")
+                    message(getString(R.string.error_save))
                 }
             }, {
                 //Cancelar
@@ -98,39 +102,39 @@ class GameDialog(
                         repository.updateGame(game)
                     }
 
-                    message("Juego actualizado exitosamente")
+                    message(getString(R.string.successfully_updated))
 
                     //Actualizar la UI
                     updateUI()
 
                 }catch(e: IOException){
                     e.printStackTrace()
-                    message("Error al actualizar el juego")
+                    message(getString(R.string.error_updated))
                 }
 
             }, {
                 //Delete
 
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Confirmación")
-                    .setMessage("¿Realmente deseas eliminar el juego ${game.title}?")
-                    .setPositiveButton("Aceptar"){ _,_ ->
+                    .setTitle(getString(R.string.tittle_delete))
+                    .setMessage(getString(R.string.confirm_delete))
+                    .setPositiveButton(getString(R.string.accept)){ _,_ ->
                         try {
                             lifecycleScope.launch {
                                 repository.deleteGame(game)
                             }
 
-                            message("Juego eliminado exitosamente")
+                            message(getString(R.string.successfully_delete))
 
                             //Actualizar la UI
                             updateUI()
 
                         }catch(e: IOException){
                             e.printStackTrace()
-                            message("Error al eliminar el juego")
+                            message(getString(R.string.error_delete))
                         }
                     }
-                    .setNegativeButton("Cancelar"){ dialog, _ ->
+                    .setNegativeButton(getString(R.string.cancel)){ dialog, _ ->
                         dialog.dismiss()
                     }
                     .create()
@@ -229,11 +233,54 @@ class GameDialog(
 
         })
 
+        binding.tietDeveloper.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(d0: CharSequence?, d1: Int, d2: Int, d3: Int) {
+
+            }
+
+            override fun onTextChanged(d0: CharSequence?, d1: Int, d2: Int, d3: Int) {
+
+            }
+
+            override fun afterTextChanged(d0: Editable?) {
+                // saveButton?.isEnabled = validateFields()
+                if(binding.tietDeveloper.text.toString().isNotEmpty()) {
+                    binding.tilDeveloper.error = ""
+                }
+                val platform = when (d0.toString()) {
+                    getString(R.string.activision) -> DevsList.ACTIVISION
+                    getString(R.string.microsoft) -> DevsList.MICROSOFT
+                    getString(R.string.nintendo) -> DevsList.NINTENDO
+                    getString(R.string.sony) -> DevsList.SONY
+                    getString(R.string.tencent) -> DevsList.TENCENT
+                    else -> DevsList.OTHER
+                }
+            }
+
+        })
+
     }
 
-    private fun validateFields() =
-        (binding.tietTitle.text.toString().isNotEmpty() && binding.tietGenre.text.toString()
-            .isNotEmpty() && binding.tietDeveloper.text.toString().isNotEmpty())
+    private fun validateFields(): Boolean {
+        var valid = true
+        if(binding.tietTitle.text.toString().isEmpty())
+        {
+            binding.tilTitle.error = getString(R.string.empty_name)
+            valid = false
+        }
+        if(binding.tietGenre.text.toString().isEmpty())
+        {
+            binding.tilGenre.error = getString(R.string.empty_genre)
+            valid = false
+        }
+        if(binding.tietDeveloper.text.toString().isEmpty())
+        {
+            binding.tilDeveloper.error = getString(R.string.empty_dev)
+            valid = false
+        }
+
+        return valid
+    }
 
     private fun buildDialog(
         btn1Text: String,
@@ -242,7 +289,7 @@ class GameDialog(
         negativeButton: () -> Unit
     ): Dialog =
         builder.setView(binding.root)
-            .setTitle("Juego")
+            .setTitle(getString(R.string.tittle_new_game))
             .setPositiveButton(btn1Text, DialogInterface.OnClickListener { dialog, which ->
                 //Acción para el botón positivo
                 positiveButton()

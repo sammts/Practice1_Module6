@@ -3,6 +3,6 @@
     <style name="Base.Theme.VideogamesDB" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="colorPrimary">#FFA60808</item>
+        <item name="colorPrimary">#300357</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ImageView
@@ -12,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:contentDescription="Header"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/header" />
+        app:srcCompat="@drawable/game" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilTitle"
@@ -23,12 +24,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Título"
+        android:hint="@string/nombre"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
+        app:helperText="@string/helper_name"
+        app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,12 +55,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Género"
+        android:hint="@string/genero"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
+        app:helperText="@string/helper_genre"
+        app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_genre">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -72,16 +77,17 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilDeveloper"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Desarrollador"
+        android:hint="@string/developer"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -89,17 +95,18 @@
         app:boxCornerRadiusTopStart="16dp"
         app:startIconDrawable="@drawable/ic_developer">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
             android:id="@+id/tietDeveloper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="none"
             android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="1">
+            tools:text="@string/options">
 
-        </com.google.android.material.textfield.TextInputEditText>
+        </AutoCompleteTextView>
 
     </com.google.android.material.textfield.TextInputLayout>
+
 
 
 </LinearLayout>

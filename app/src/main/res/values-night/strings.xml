@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add">Agregrar elemento</string>
+    <string name="registers_null">¡No hay registros!</string>
+</resources>
