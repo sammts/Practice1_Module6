@@ -3,6 +3,7 @@ package com.amaurypm.videogamesdb.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.amaurypm.videogamesdb.R
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
 import com.amaurypm.videogamesdb.databinding.ActivityMainBinding
 import com.amaurypm.videogamesdb.databinding.GameElementBinding
@@ -40,7 +41,21 @@ class GameAdapter(private val onGameClick: (GameEntity) -> Unit): RecyclerView.A
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(games[position])
+        val game = games[position]
+
+        holder.bind(game)
+
+        if (game.devImage == 0)  {
+            holder.ivIcon.setImageResource(R.drawable.activision)
+        } else if (game.devImage == 1)  {
+            holder.ivIcon.setImageResource(R.drawable.sony)
+        } else if (game.devImage == 2)  {
+            holder.ivIcon.setImageResource(R.drawable.nintendo)
+        } else if (game.devImage == 3)  {
+            holder.ivIcon.setImageResource(R.drawable.microsoft)
+        } else if (game.devImage == 4)  {
+            holder.ivIcon.setImageResource(R.drawable.tencent)
+        }
 
         holder.itemView.setOnClickListener {
             //Aquí va el click del elemento

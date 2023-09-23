@@ -6,6 +6,10 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
@@ -27,8 +31,8 @@ class GameDialog(
     private var game: GameEntity = GameEntity(
         title = "",
         genre = "",
-        developer = ""
-        //devImage = DevsList.OTHER
+        developer = "",
+        devImage = 0
     ),
     private val updateUI: () -> Unit,
     private val message: (String) -> Unit
@@ -44,8 +48,13 @@ class GameDialog(
 
     private lateinit var repository: GameRepository
 
+    var flag_Spinner : Boolean = false
+
+    var dev_Image_Actual = 0
+
     //Se configura el diálogo inicial
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
         _binding = GameDialogBinding.inflate(requireActivity().layoutInflater)
 
         repository = (requireContext().applicationContext as VideogamesDBApp).repository
@@ -56,10 +65,18 @@ class GameDialog(
         binding.tietGenre.setText(game.genre)
         binding.tietDeveloper.setText(game.developer)*/
 
+        val devs = arrayListOf("Activision", "Sony", "Nintendo", "Microsoft", "Game")
+
+        val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, devs)
+
+        binding.spinner.adapter = adaptador
+
         binding.apply {
             tietTitle.setText(game.title)
             tietGenre.setText(game.genre)
-            tietDeveloper.setText(game.developer)
+            //tietDeveloper.setText(game.developer)
+            spinner.setSelection(game.devImage)
+            dev_Image_Actual = game.devImage
         }
 
         dialog = if (newGame) {
@@ -67,7 +84,8 @@ class GameDialog(
                  //Create (Guardar)
                 game.title = binding.tietTitle.text.toString()
                 game.genre = binding.tietGenre.text.toString()
-                game.developer = binding.tietDeveloper.text.toString()
+                //game.developer = binding.tietDeveloper.text.toString()
+                game.devImage = binding.spinner.selectedItemPosition
 
                 try {
                     lifecycleScope.launch {
@@ -91,7 +109,8 @@ class GameDialog(
                 //Update
                 game.title = binding.tietTitle.text.toString()
                 game.genre = binding.tietGenre.text.toString()
-                game.developer = binding.tietDeveloper.text.toString()
+                //game.developer = binding.tietDeveloper.text.toString()
+                game.devImage = binding.spinner.selectedItemPosition
 
                 try {
                     lifecycleScope.launch {
@@ -111,7 +130,9 @@ class GameDialog(
             }, {
                 //Delete
 
-                AlertDialog.Builder(requireContext())
+                val context = requireContext()
+
+                AlertDialog.Builder(context)
                     .setTitle(getString(R.string.tittle_delete))
                     .setMessage(getString(R.string.confirm_delete))
                     .setPositiveButton(getString(R.string.accept)){ _,_ ->
@@ -120,7 +141,7 @@ class GameDialog(
                                 repository.deleteGame(game)
                             }
 
-                            message(getString(R.string.successfully_delete))
+                            message(context.getString(R.string.successfully_delete))
 
                             //Actualizar la UI
                             updateUI()
@@ -214,7 +235,25 @@ class GameDialog(
 
         })
 
-        binding.tietDeveloper.addTextChangedListener(object : TextWatcher {
+        binding.spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                if (p2 != dev_Image_Actual){
+                    flag_Spinner = true
+                    saveButton?.isEnabled = validateFields()
+                } else {
+                    flag_Spinner = false
+                    saveButton?.isEnabled = validateFields()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                flag_Spinner = false
+                saveButton?.isEnabled = validateFields()
+            }
+
+        }
+
+        /*binding.tietDeveloper.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -253,7 +292,7 @@ class GameDialog(
                 }
             }
 
-        })
+        })*/
 
     }
 
@@ -269,11 +308,14 @@ class GameDialog(
             binding.tilGenre.error = getString(R.string.empty_genre)
             valid = false
         }
-        if(binding.tietDeveloper.text.toString().isEmpty())
+        if(!flag_Spinner) {
+            valid = false
+        }
+        /*if(binding.tietDeveloper.text.toString().isEmpty())
         {
             binding.tilDeveloper.error = getString(R.string.empty_dev)
             valid = false
-        }
+        }*/
 
         return valid
     }

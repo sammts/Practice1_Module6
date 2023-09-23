@@ -78,7 +78,23 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:startIconDrawable="@drawable/ic_developer" />
+
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilDeveloper"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
@@ -98,14 +114,14 @@
         <AutoCompleteTextView
             android:id="@+id/tietDeveloper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
+            android:layout_height="183dp"
             android:imeOptions="actionDone"
+            android:inputType="none"
             tools:text="@string/options">
 
         </AutoCompleteTextView>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>-->
 
 
 

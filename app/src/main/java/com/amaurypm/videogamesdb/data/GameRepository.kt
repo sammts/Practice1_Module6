@@ -1,5 +1,6 @@
 package com.amaurypm.videogamesdb.data
 
+import android.media.Image
 import com.amaurypm.videogamesdb.data.db.GameDao
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
 import com.amaurypm.videogamesdb.util.DevsList
@@ -13,8 +14,8 @@ class GameRepository(private val gameDao: GameDao) {
         gameDao.insertGame(game)
     }
 
-    suspend fun insertGame(title: String, genre: String, developer: String){
-        gameDao.insertGame(GameEntity(title = title, genre = genre, developer = developer))
+    suspend fun insertGame(title: String, genre: String, developer: String, devImage: Int){
+        gameDao.insertGame(GameEntity(title = title, genre = genre, developer = developer, devImage = devImage))
     }
 
     suspend fun getAllGames(): List<GameEntity> = gameDao.getAllGames()
