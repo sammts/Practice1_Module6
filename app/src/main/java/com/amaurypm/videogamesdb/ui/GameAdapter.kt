@@ -2,6 +2,7 @@ package com.amaurypm.videogamesdb.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.convertTo
 import androidx.recyclerview.widget.RecyclerView
 import com.amaurypm.videogamesdb.R
 import com.amaurypm.videogamesdb.data.db.model.GameEntity
@@ -27,7 +28,17 @@ class GameAdapter(private val onGameClick: (GameEntity) -> Unit): RecyclerView.A
             binding.apply {
                 tvTitle.text = game.title
                 tvGenre.text = game.genre
-                tvDeveloper.text = game.developer
+                if (game.devImage == 0) {
+                    tvDeveloper.text = "Activision Blizzard"
+                } else if (game.devImage == 1) {
+                    tvDeveloper.text = "Sony Iteractive Entertainment"
+                } else if (game.devImage == 2) {
+                    tvDeveloper.text = "Nintendo"
+                } else if (game.devImage == 3) {
+                    tvDeveloper.text = "Microsoft"
+                } else if (game.devImage == 4) {
+                    tvDeveloper.text = "Tencent"
+                }
             }
         }
     }

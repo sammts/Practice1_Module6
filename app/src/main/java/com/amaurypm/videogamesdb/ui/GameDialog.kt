@@ -50,7 +50,7 @@ class GameDialog(
 
     var flag_Spinner : Boolean = false
 
-    var dev_Image_Actual = 0
+    var dev_Image_Actual = 6
 
     //Se configura el diálogo inicial
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -65,7 +65,8 @@ class GameDialog(
         binding.tietGenre.setText(game.genre)
         binding.tietDeveloper.setText(game.developer)*/
 
-        val devs = arrayListOf("Activision", "Sony", "Nintendo", "Microsoft", "Game")
+        val devs = arrayListOf(getString(R.string.activision), getString(R.string.sony), getString(R.string.nintendo),
+            getString(R.string.microsoft), getString(R.string.tencent))
 
         val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, devs)
 
@@ -134,7 +135,7 @@ class GameDialog(
 
                 AlertDialog.Builder(context)
                     .setTitle(getString(R.string.tittle_delete))
-                    .setMessage(getString(R.string.confirm_delete))
+                    .setMessage("¿Realmente deseas eliminar el juego ${game.title}?")
                     .setPositiveButton(getString(R.string.accept)){ _,_ ->
                         try {
                             lifecycleScope.launch {
@@ -217,6 +218,7 @@ class GameDialog(
 
             override fun afterTextChanged(s: Editable?) {
                 saveButton?.isEnabled = validateFields()
+                saveButton?.isEnabled = true
             }
         })
 
@@ -231,6 +233,7 @@ class GameDialog(
 
             override fun afterTextChanged(s: Editable?) {
                 saveButton?.isEnabled = validateFields()
+                saveButton?.isEnabled = true
             }
 
         })
@@ -300,12 +303,12 @@ class GameDialog(
         var valid = true
         if(binding.tietTitle.text.toString().isEmpty())
         {
-            binding.tilTitle.error = getString(R.string.empty_name)
+            //binding.tilTitle.error = getString(R.string.empty_name)
             valid = false
         }
         if(binding.tietGenre.text.toString().isEmpty())
         {
-            binding.tilGenre.error = getString(R.string.empty_genre)
+            //binding.tilGenre.error = getString(R.string.empty_genre)
             valid = false
         }
         if(!flag_Spinner) {

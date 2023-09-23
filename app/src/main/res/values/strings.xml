@@ -9,7 +9,7 @@
     <string name="error_save">Error al guardar el juego</string>
     <string name="successfully_updated">Juego actualizado exitosamente</string>
     <string name="error_updated">Error al actualizar el juego</string>
-    <string name="confirm_delete">¿Realmente deseas eliminar el juego ${game.title}?</string>
+    <string name="confirm_delete">¿Realmente deseas eliminar el juego </string>
     <string name="tittle_delete">Confirmación</string>
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
@@ -28,10 +28,10 @@
         <item>Sony Interactive Entertainment</item>
         <item>Tencent</item>
     </string-array>
-    <string name="activision">Activision</string>
+    <string name="activision">Activision Blizzard</string>
     <string name="microsoft">Microsoft</string>
     <string name="nintendo">Nintendo</string>
-    <string name="sony">Sony</string>
+    <string name="sony">Sony Iteractive Entertainment</string>
     <string name="tencent">Tencent</string>
     <string name="empty_name">Campo Nombre vacío</string>
     <string name="empty_genre">Campo genero vacío</string>
